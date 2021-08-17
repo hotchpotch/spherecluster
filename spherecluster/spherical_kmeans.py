@@ -327,8 +327,9 @@ class SphericalKMeans(KMeans):
     def _check_params(self, X):
         # n_jobs
         if self.n_jobs != 'deprecated':
-            warnings.warn("'n_jobs' was deprecated in version 0.23 and will be"
-                          " removed in 1.0 (renaming of 0.25).", FutureWarning)
+            # n_jobs = 1 でないと、そもそもsklearn 0.24 でうまく動かなく、どちらにしろ必ず warning が出るため抑制のため
+            # warnings.warn("'n_jobs' was deprecated in version 0.23 and will be"
+            #              " removed in 1.0 (renaming of 0.25).", FutureWarning)
             self._n_threads = self.n_jobs
         else:
             self._n_threads = None
